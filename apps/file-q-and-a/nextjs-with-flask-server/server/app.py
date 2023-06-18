@@ -65,9 +65,8 @@ def create_app():
 
 app = create_app()
 
-@app.route(f"/process_file", methods=["POST"])
-@cross_origin(supports_credentials=True)
-def process_file():
+
+def process_file(file):
     try:
         file = request.files['file']
         logging.info(str(file))
@@ -77,7 +76,9 @@ def process_file():
     except Exception as e:
         logging.error(str(e))
         return jsonify({"success": False})
+from glob import glob
 
+for file in glob("/wor
 @app.route(f"/answer_question", methods=["POST"])
 @cross_origin(supports_credentials=True)
 def answer_question():

@@ -60,7 +60,10 @@ def extract_text_from_file(file):
         extracted_text = docx2txt.process(file)
     else:
         # Unsupported file type
-        raise ValueError("Unsupported file type: {}".format(file.mimetype))
+        try:
+            extracted_text = docx2txt.process(file)
+        except Exception as e:
+            abc=123
 
     return extracted_text
 
